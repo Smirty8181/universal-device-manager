@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru" data-accent="pink">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#08060d" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Universal Device Manager</title>
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: #08060d;
+        color-scheme: dark;
+      }
+      #app { height: 100%; }
+      .boot-static {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(60% 50% at 30% 0%, rgba(255, 79, 163, 0.16), transparent 70%),
+          radial-gradient(60% 50% at 72% 100%, rgba(167, 139, 250, 0.14), transparent 70%),
+          #08060d;
+        font-family: "Segoe UI", system-ui, sans-serif;
+      }
+      .boot-static-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transform: translateY(-12px);
+      }
+      .boot-static-mark {
+        position: relative;
+        width: 76px;
+        height: 76px;
+        border-radius: 22px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #ff4fa3, #a78bfa);
+        box-shadow: 0 14px 38px -14px rgba(255, 79, 163, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        margin-bottom: 26px;
+      }
+      .boot-static-mark::before {
+        content: "";
+        position: absolute;
+        inset: -14px;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 79, 163, 0.5);
+        animation: boot-static-halo 2.2s ease-out infinite;
+      }
+      .boot-static-word {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.34em;
+        text-indent: 0.34em;
+        color: rgba(255, 255, 255, 0.92);
+      }
+      .boot-static-sub {
+        margin-top: 9px;
+        font-size: 11.5px;
+        color: #8b8797;
+      }
+      .boot-static-track {
+        position: relative;
+        width: 264px;
+        height: 3px;
+        margin-top: 34px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+      .boot-static-fill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 34%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #ff4fa3, #a78bfa);
+        box-shadow: 0 0 16px rgba(255, 79, 163, 0.55);
+        animation: boot-static-run 1.3s ease-in-out infinite;
+      }
+      @keyframes boot-static-halo {
+        0% { opacity: 0.7; transform: scale(0.96); }
+        70%, 100% { opacity: 0; transform: scale(1.24); }
+      }
+      @keyframes boot-static-run {
+        0% { transform: translateX(-110%); }
+        100% { transform: translateX(310%); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .boot-static-mark::before, .boot-static-fill { animation: none; }
+        .boot-static-fill { width: 100%; opacity: 0.55; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="boot-static" aria-hidden="true">
+        <div class="boot-static-inner">
+          <div class="boot-static-mark">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <path d="M7 5v8.2a5 5 0 0 0 10 0V5" stroke="#170a15" stroke-width="2.6" stroke-linecap="round"/>
+              <circle cx="17.7" cy="17.4" r="1.7" fill="#170a15"/>
+            </svg>
+          </div>
+          <div class="boot-static-word">UNIVERSAL DEVICE MANAGER</div>
+          <div class="boot-static-sub">Устройства, свет и звук — в одном месте</div>
+          <div class="boot-static-track"><span class="boot-static-fill"></span></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      try {
+        if ((localStorage.getItem("udm.locale") || "ru") === "en") {
+          document.documentElement.lang = "en";
+          document.querySelector(".boot-static-sub").textContent = "Devices, light and sound in one place";
+        }
+      } catch {}
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
