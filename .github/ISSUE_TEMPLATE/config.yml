@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Документация
+    url: https://github.com/Smirty8181/universal-device-manager/blob/main/README.md
+    about: Возможности, сборка, ограничения и приватность описаны в README
+  - name: Поддерживаемые устройства
+    url: https://github.com/Smirty8181/universal-device-manager/blob/main/SUPPORTED_DEVICES.md
+    about: Список моделей, проверенных на реальном железе, и правила добавления новых
